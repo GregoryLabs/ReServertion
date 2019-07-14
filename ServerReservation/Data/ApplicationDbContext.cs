@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ServerReservation.Areas.Identity.Models;
+using ServerReservation.Models;
 
 namespace ServerReservation.Data
 {
@@ -13,5 +14,10 @@ namespace ServerReservation.Data
             : base(options)
         {
         }
+
+        #region Models
+        public DbSet<Request> Requests { get; set; }
+        public DbSet<Server> Servers { get; set; }
+        #endregion
     }
 }

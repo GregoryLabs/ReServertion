@@ -41,6 +41,36 @@ namespace ServerReservation.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Middle Name")]
+            public string MiddleName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Employee Id")]
+            public string EmployeeId { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Title")]
+            public string Title { get; set; }
+
+            [Display(Name = "Hire Date")]
+            [DataType(DataType.Date)]
+            public DateTime? HireDate { get; set; }
+
+            [Display(Name = "Birth Date")]
+            [DataType(DataType.Date)]
+            public DateTime? DateOfBirth { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -65,6 +95,13 @@ namespace ServerReservation.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                EmployeeId = user.EmployeeId,
+                Title = user.Title,
+                HireDate = user.HireDate,
+                DateOfBirth = user.DateOfBirth,
                 Email = email,
                 PhoneNumber = phoneNumber
             };
@@ -86,6 +123,42 @@ namespace ServerReservation.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+
+            if (Input.FirstName != user.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+            }
+
+            if (Input.MiddleName != user.MiddleName)
+            {
+                user.MiddleName = Input.MiddleName;
+            }
+
+            if (Input.LastName != user.LastName)
+            {
+                user.LastName = Input.LastName;
+            }
+
+            if (Input.EmployeeId != user.EmployeeId)
+            {
+                user.EmployeeId = Input.EmployeeId;
+            }
+
+            if (Input.Title != user.Title)
+            {
+                user.Title = Input.Title;
+            }
+
+            if (Input.HireDate != user.HireDate)
+            {
+                user.HireDate = Input.HireDate;
+            }
+
+            if (Input.DateOfBirth != user.DateOfBirth)
+            {
+                user.DateOfBirth = Input.DateOfBirth;
+            }
+
 
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)

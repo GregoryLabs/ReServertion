@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ServerReservation.Models.Request>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsNewServer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Server)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestedByEmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestedByEmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestJustification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedByEmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedByEmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalComment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsNewServer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Server.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedByEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedByEmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedByUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestJustification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedByEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedByEmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedByUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalComment)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

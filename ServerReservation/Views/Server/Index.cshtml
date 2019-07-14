@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ServerReservation.Models.Server>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hostname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HDSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RAM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RAMSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hostname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HDSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAMSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

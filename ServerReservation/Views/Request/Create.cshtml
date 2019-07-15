@@ -11,13 +11,12 @@
     var user = await UserManager.GetUserAsync(User);
 }
 
-<h1>Create</h1>
-<h4>Request</h4>
+<h2>Create - Request</h2>
 <hr />
 
 
 
-<form asp-action="Create">
+<form asp-action="Create" asp-route-id="">
     <div class="row">
         <!-- #region Left Column -->
         <div class="col-md-6">
@@ -42,7 +41,7 @@
                             @if (!string.IsNullOrEmpty(@user.FullName))
                             {
                                 <dt class="col-5">
-                                    <strong>Name:</strong>
+                                    <h6>Name:</h6>
                                 </dt>
                                 <dd class="col-7">
                                     <div class=""> @user.FullName</div>
@@ -51,7 +50,7 @@
                             @if (!string.IsNullOrEmpty(@user.EmployeeId))
                             {
                                 <dt class="col-5">
-                                    <strong>Employee Id:</strong>
+                                    <h6>Employee Id:</h6>
                                 </dt>
                                 <dd class="col-7">
                                     <div class=""> @user.EmployeeId</div>
@@ -60,7 +59,7 @@
                             @if (!string.IsNullOrEmpty(@user.Email))
                             {
                                 <dt class="col-5">
-                                    <strong>Email:</strong>
+                                    <h6>Email:</h6>
                                 </dt>
                                 <dd class="col-7">
                                     <div class=""> @user.Email</div>
@@ -69,7 +68,7 @@
                             @if (!string.IsNullOrEmpty(@user.PhoneNumber))
                             {
                                 <dt class="col-5">
-                                    <strong>Phone Number:</strong>
+                                    <h6>Phone Number:</h6>
                                 </dt>
                                 <dd class="col-7">
                                     <div class="">@user.PhoneNumber</div>
@@ -78,7 +77,7 @@
                         </dl>
                         <div class="form-group">
                             <label asp-for="RequestedByUserId" class="control-label sr-only"></label>
-                            <input asp-for="RequestedByUserId" class="form-control" value="" type="hidden" />
+                            <input asp-for="RequestedByUserId" class="form-control" value="@user.Id" type="hidden" />
                             <span asp-validation-for="RequestedByUserId" class="text-danger"></span>
                         </div>
                     </div>
@@ -121,15 +120,17 @@
                 <span asp-validation-for="RequestJustification" class="text-danger"></span>
             </div>
             <!-- #endregion Request Details-->
+            @*<div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
+                    </label>
+                </div>*@
+            <!-- Attention: -->
 
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
-                </label>
-            </div>
+            <a asp-controller="Server" asp-action="EditRequest" asp-route-id="@ViewBag.SelectedServerId" class="pull-right">Edit</a>
             <div class="form-group">
                 <label asp-for="ServerId" class="control-label"></label>
-                <select asp-for="ServerId" class="form-control" asp-items="ViewBag.ServerId"></select>
+                <select asp-for="ServerId" class="form-control" asp-items="ViewBag.ServerId" disabled></select>
             </div>
 
 
@@ -143,7 +144,7 @@
 
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Server" asp-action="Select">Back to List</a>
 </div>
 
 @section Scripts {

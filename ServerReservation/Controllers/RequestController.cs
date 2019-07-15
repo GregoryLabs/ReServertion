@@ -48,12 +48,24 @@ namespace ServerReservation.Controllers
         }
 
         // GET: Request/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id");
-            return View();
+            var selectedServerId = id;
+            if (selectedServerId == null)
+            {
+                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+                ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id");
+                return View();
+            }
+            else
+            {
+                ViewData["SelectedServerId"] = selectedServerId;
+                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+                ViewData["ServerId"] = new SelectList(_context.Servers.Where(i => i.Id == selectedServerId), "Id", "Details");
+                return View();
+            }
         }
 
         // POST: Request/Create
@@ -61,7 +73,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Timestamp,StartDate,EndDate,IsNewServer,ServerId,RequestedByEmployeeId,RequestedByEmployeeName,RequestedByUserId,RequestJustification,ApprovalStatus,ApprovedByEmployeeId,ApprovedByEmployeeName,ApprovedByUserId,ApprovalComment")] Request request)
+        public async Task<IActionResult> Create(int? selectedServerId, [Bind("Id,Timestamp,StartDate,EndDate,IsNewServer,ServerId,RequestedByEmployeeId,RequestedByEmployeeName,RequestedByUserId,RequestJustification,ApprovalStatus,ApprovedByEmployeeId,ApprovedByEmployeeName,ApprovedByUserId,ApprovalComment")] Request request)
         {
             if (ModelState.IsValid)
             {

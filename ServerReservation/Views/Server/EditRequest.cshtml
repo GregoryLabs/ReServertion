@@ -1,18 +1,18 @@
 ﻿@model ServerReservation.Models.Server
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Edit - Server</h2>
 <hr />
-
-<div class="d-flex">
+<div class=" d-flex">
     <div class="card bg-light mb-3">
         <div class="card-body">
             <div class="col">
-                <form asp-action="Edit">
+                <form asp-action="EditRequest">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <!-- Cost -->
                     <div class="form-group">
@@ -83,15 +83,17 @@
                         <span asp-validation-for="Note" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary pull-right" />
+                        <input type="submit" value="Continue" class="btn btn-primary pull-right" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
+
+    <div>
+        <a asp-action="Select">Back to List</a>
+        <a asp-controller="Request" asp-action="Create" asp-route-id="@Model.Id" class="pull-right">Edit</a>
+    </div>
 </div>
 
 @section Scripts {

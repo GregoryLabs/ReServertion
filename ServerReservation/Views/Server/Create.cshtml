@@ -4,96 +4,96 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class=" d-flex justify-content-center">
-    <div>
-        <h2>Server Create</h2>
-        <hr />
-        <div class="card bg-light mb-3">
-            <div class="card-body">
-                    <div class="col">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <!-- Cost -->
-                            <div class="form-group">
-                                <label asp-for="Cost" class="control-label"></label>
-                                <input asp-for="Cost" class="form-control" />
-                                <span asp-validation-for="Cost" class="text-danger"></span>
-                            </div>
-                            <!-- Hostname -->
-                            <div class="form-group">
-                                <label asp-for="Hostname" class="control-label"></label>
-                                <input asp-for="Hostname" class="form-control" />
-                                <span asp-validation-for="Hostname" class="text-danger"></span>
-                            </div>
-                            <!-- CPU -->
-                            <div class="form-group">
-                                <label asp-for="CPU" class="control-label"></label>
-                                <input asp-for="CPU" class="form-control" />
-                                <span asp-validation-for="CPU" class="text-danger"></span>
-                            </div>
-                            <!-- Hard Drive -->
-                            <label asp-for="HD" class="control-label"></label>
-                            <div class="input-group  mb-3">
-                                <input asp-for="HD" class="form-control" />
-                                <div class="input-group-append">
-                                    <label asp-for="HDSize" class="control-label sr-only"></label>
-                                    <select asp-for="HDSize" asp-items="Html.GetEnumSelectList<FileSize>()"
-                                            class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
-                                </div>
-                            </div>
-                            <span asp-validation-for="HD" class="text-danger"></span>
-                            <span asp-validation-for="HDSize" class="text-danger"></span>
-                            <!-- RAM -->
-                            <label asp-for="RAM" class="control-label"></label>
-                            <div class="input-group mb-3">
-                                <input asp-for="RAM" class="form-control" />
 
-                                <div class="input-group-append">
-                                    <label asp-for="RAMSize" class="control-label sr-only"></label>
-
-                                    <select asp-for="RAMSize" asp-items="Html.GetEnumSelectList<FileSize>()"
-                                            class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
-                                </div>
-
-                            </div>
-                            <span asp-validation-for="RAMSize" class="text-danger"></span>
-                            <span asp-validation-for="RAM" class="text-danger"></span>
-
-                            <!-- Server Type -->
-                            <div class="form-group">
-                                <label asp-for="ServerType" class="control-label"></label>
-                                <select asp-for="ServerType" asp-items="Html.GetEnumSelectList<ServerType>()"
-                                        class="selectpicker form-control SelectListClassWhite" title="Select Type..." selectonTab="true"></select>
-                                <span asp-validation-for="ServerType" class="text-danger"></span>
-                            </div>
-                            <!-- Location -->
-                            <div class="form-group">
-                                <label asp-for="Location" class="control-label"></label>
-                                <textarea asp-for="Location" class="form-control"></textarea>
-                                <span asp-validation-for="Location" class="text-danger"></span>
-                            </div>
-
-                            <hr />
-
-                            <!-- Note -->
-                            <div class="form-group">
-                                <label asp-for="Note" class="control-label"></label>
-                                <textarea asp-for="Note" class="form-control"></textarea>
-                                <span asp-validation-for="Note" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Continue" class="btn btn-primary pull-right" />
-                            </div>
-                        </form>
+<h2>Create - Server</h2>
+<hr />
+<div class="d-flex">
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <div class="col">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Cost -->
+                    <div class="form-group">
+                        <label asp-for="Cost" class="control-label"></label>
+                        <input asp-for="Cost" class="form-control" />
+                        <span asp-validation-for="Cost" class="text-danger"></span>
                     </div>
-            </div>
-        </div>
+                    <!-- Hostname -->
+                    <div class="form-group">
+                        <label asp-for="Hostname" class="control-label"></label>
+                        <input asp-for="Hostname" class="form-control" />
+                        <span asp-validation-for="Hostname" class="text-danger"></span>
+                    </div>
+                    <!-- CPU -->
+                    <div class="form-group">
+                        <label asp-for="CPU" class="control-label"></label>
+                        <input asp-for="CPU" class="form-control" />
+                        <span asp-validation-for="CPU" class="text-danger"></span>
+                    </div>
+                    <!-- Hard Drive -->
+                    <label asp-for="HD" class="control-label"></label>
+                    <div class="input-group  mb-3">
+                        <input asp-for="HD" class="form-control" />
+                        <div class="input-group-append">
+                            <label asp-for="HDSize" class="control-label sr-only"></label>
+                            <select asp-for="HDSize" asp-items="Html.GetEnumSelectList<FileSize>()"
+                                    class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                        </div>
+                    </div>
+                    <span asp-validation-for="HD" class="text-danger"></span>
+                    <span asp-validation-for="HDSize" class="text-danger"></span>
+                    <!-- RAM -->
+                    <label asp-for="RAM" class="control-label"></label>
+                    <div class="input-group mb-3">
+                        <input asp-for="RAM" class="form-control" />
 
-        <div>
-            <a asp-action="Index">Back to List</a>
+                        <div class="input-group-append">
+                            <label asp-for="RAMSize" class="control-label sr-only"></label>
+
+                            <select asp-for="RAMSize" asp-items="Html.GetEnumSelectList<FileSize>()"
+                                    class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                        </div>
+
+                    </div>
+                    <span asp-validation-for="RAMSize" class="text-danger"></span>
+                    <span asp-validation-for="RAM" class="text-danger"></span>
+
+                    <!-- Server Type -->
+                    <div class="form-group">
+                        <label asp-for="ServerType" class="control-label"></label>
+                        <select asp-for="ServerType" asp-items="Html.GetEnumSelectList<ServerType>()"
+                                class="selectpicker form-control SelectListClassWhite" title="Select Type..." selectonTab="true"></select>
+                        <span asp-validation-for="ServerType" class="text-danger"></span>
+                    </div>
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label"></label>
+                        <textarea asp-for="Location" class="form-control"></textarea>
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <hr />
+
+                    <!-- Note -->
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <textarea asp-for="Note" class="form-control"></textarea>
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary pull-right" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -24,6 +24,8 @@ namespace ServerReservation.Areas.Identity.Models
         [PersonalData]
         public string EmployeeId { get; set; }
 
+        public string Details { get { return FirstName + " " + LastName + "; " + EmployeeId; } }
+
         [PersonalData]
         public string Title { get; set; }
 

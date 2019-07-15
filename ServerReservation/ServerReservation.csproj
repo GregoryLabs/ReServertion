@@ -6,6 +6,12 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Request\Create - Copy.cshtml" />
+    <Content Remove="Views\Request\Edit - Copy.cshtml" />
+    <Content Remove="Views\Server\Create - Copy.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

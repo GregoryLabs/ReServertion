@@ -53,16 +53,16 @@ namespace ServerReservation.Controllers
             var selectedServerId = id;
             if (selectedServerId == null)
             {
-                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id");
-                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id");
-                ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id");
+                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Details");
+                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Details");
+                ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Details");
                 return View();
             }
             else
             {
                 ViewData["SelectedServerId"] = selectedServerId;
-                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id");
-                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+                ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Details");
+                ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Details");
                 ViewData["ServerId"] = new SelectList(_context.Servers.Where(i => i.Id == selectedServerId), "Id", "Details");
                 return View();
             }
@@ -81,9 +81,9 @@ namespace ServerReservation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.ApprovedByUserId);
-            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.RequestedByUserId);
-            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id", request.ServerId);
+            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.ApprovedByUserId);
+            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.RequestedByUserId);
+            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Details", request.ServerId);
             return View(request);
         }
 
@@ -100,9 +100,9 @@ namespace ServerReservation.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.ApprovedByUserId);
-            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.RequestedByUserId);
-            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id", request.ServerId);
+            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.ApprovedByUserId);
+            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.RequestedByUserId);
+            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Details", request.ServerId);
             return View(request);
         }
 
@@ -138,9 +138,9 @@ namespace ServerReservation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.ApprovedByUserId);
-            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Id", request.RequestedByUserId);
-            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Id", request.ServerId);
+            ViewData["ApprovedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.ApprovedByUserId);
+            ViewData["RequestedByUserId"] = new SelectList(_context.Users, "Id", "Details", request.RequestedByUserId);
+            ViewData["ServerId"] = new SelectList(_context.Servers, "Id", "Details", request.ServerId);
             return View(request);
         }
 

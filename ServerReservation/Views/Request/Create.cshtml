@@ -102,22 +102,33 @@
             </div>
             <!-- #endregion Account information-->
             <!-- #region Request Details -->
-            <div class="form-row">
-                <div class="form-group col">
-                    <label asp-for="StartDate" class="control-label"></label>
-                    <input asp-for="StartDate" type="text" value="" id="StartDate" class="form-control" />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <a asp-controller="Server" asp-action="EditRequest" asp-route-id="@ViewBag.SelectedServerId" class="pull-right">Edit</a>
+                    <div class="form-group">
+                        <label asp-for="ServerId" class="control-label"></label>
+                        <select asp-for="ServerId" class="form-control  not-allowed" asp-items="ViewBag.ServerId" disabled></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="StartDate" class="control-label"></label>
+                            <input asp-for="StartDate" type="text" value="" id="StartDate" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col">
+                            <label asp-for="EndDate" class="control-label"></label>
+                            <input asp-for="EndDate" type="text" value="" id="EndDate" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col">
-                    <label asp-for="EndDate" class="control-label"></label>
-                    <input asp-for="EndDate" type="text" value="" id="EndDate" class="form-control" />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <label asp-for="RequestJustification" class="control-label"></label>
+                        <textarea asp-for="RequestJustification" class="form-control"></textarea>
+                        <span asp-validation-for="RequestJustification" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestJustification" class="control-label"></label>
-                <textarea asp-for="RequestJustification" class="form-control"></textarea>
-                <span asp-validation-for="RequestJustification" class="text-danger"></span>
             </div>
             <!-- #endregion Request Details-->
             @*<div class="form-group form-check">
@@ -127,11 +138,7 @@
                 </div>*@
             <!-- Attention: -->
 
-            <a asp-controller="Server" asp-action="EditRequest" asp-route-id="@ViewBag.SelectedServerId" class="pull-right">Edit</a>
-            <div class="form-group">
-                <label asp-for="ServerId" class="control-label"></label>
-                <select asp-for="ServerId" class="form-control" asp-items="ViewBag.ServerId" disabled></select>
-            </div>
+
 
 
 

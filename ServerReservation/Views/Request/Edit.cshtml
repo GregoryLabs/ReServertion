@@ -8,87 +8,131 @@
 <h2>Edit - Request</h2>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Timestamp" class="control-label"></label>
-                <input asp-for="Timestamp" class="form-control" />
-                <span asp-validation-for="Timestamp" class="text-danger"></span>
+            @*<div class="form-group">
+                    <label asp-for="Timestamp" class="control-label"></label>
+                    <input asp-for="Timestamp" class="form-control" />
+                    <span asp-validation-for="Timestamp" class="text-danger"></span>
+                </div>*@
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="RequestedByEmployeeId" class="control-label"></label>
+                        <input asp-for="RequestedByEmployeeId" class="form-control" />
+                        <span asp-validation-for="RequestedByEmployeeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RequestedByEmployeeName" class="control-label"></label>
+                        <input asp-for="RequestedByEmployeeName" class="form-control" />
+                        <span asp-validation-for="RequestedByEmployeeName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RequestedByUserId" class="control-label"></label>
+                        <select asp-for="RequestedByUserId" asp-items="ViewBag.RequestedByUserId"
+                            class="selectpicker form-control SelectListClassWhite"
+                            data-live-search="true" data-size="9" data-max-options="1"
+                            liveSearchPlaceholder="Search..." selectonTab="true">
+                            <option value=""> </option>
+                        </select>
+                        <span asp-validation-for="RequestedByUserId" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="form-group form-check pull-right">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServerId" class="control-label"></label>
+                        <select asp-for="ServerId" asp-items="ViewBag.ServerId"
+                                class="selectpicker form-control SelectListClassWhite"
+                                data-live-search="true" data-size="9" data-max-options="1"
+                                liveSearchPlaceholder="Search..." selectonTab="true">
+                        </select>
+                        <span asp-validation-for="ServerId" class="text-danger"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="StartDate" class="control-label"></label>
+                            <input asp-for="StartDate" type="text" value="" id="StartDate" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col">
+                            <label asp-for="EndDate" class="control-label"></label>
+                            <input asp-for="EndDate" type="text" value="" id="EndDate" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <label asp-for="RequestJustification" class="control-label"></label>
+                        <textarea asp-for="RequestJustification" class="form-control"></textarea>
+                        <span asp-validation-for="RequestJustification" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="ApprovedByEmployeeId" class="control-label"></label>
+                        <input asp-for="ApprovedByEmployeeId" class="form-control" />
+                        <span asp-validation-for="ApprovedByEmployeeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ApprovedByEmployeeName" class="control-label"></label>
+                        <input asp-for="ApprovedByEmployeeName" class="form-control" />
+                        <span asp-validation-for="ApprovedByEmployeeName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ApprovedByUserId" class="control-label"></label>
+                        <select asp-for="ApprovedByUserId" asp-items="ViewBag.ApprovedByUserId"
+                            class="selectpicker form-control SelectListClassWhite"
+                            data-live-search="true" data-size="9" data-max-options="1"
+                            liveSearchPlaceholder="Search..." selectonTab="true">
+                            <option value=""> </option>
+                        </select>
+                        <span asp-validation-for="ApprovedByUserId" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
-                </label>
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="ApprovalStatus" class="control-label"></label>
+                        <select asp-for="ApprovalStatus" asp-items="Html.GetEnumSelectList<ApprovalStatus>()"
+                                class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                        <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <label asp-for="ApprovalComment" class="control-label"></label>
+                        <textarea asp-for="ApprovalComment" class="form-control"></textarea>
+                        <span asp-validation-for="ApprovalComment" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ServerId" class="control-label"></label>
-                <select asp-for="ServerId" class="form-control" asp-items="ViewBag.ServerId"></select>
-                <span asp-validation-for="ServerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestedByEmployeeId" class="control-label"></label>
-                <input asp-for="RequestedByEmployeeId" class="form-control" />
-                <span asp-validation-for="RequestedByEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestedByEmployeeName" class="control-label"></label>
-                <input asp-for="RequestedByEmployeeName" class="form-control" />
-                <span asp-validation-for="RequestedByEmployeeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestedByUserId" class="control-label"></label>
-                <select asp-for="RequestedByUserId" class="form-control" asp-items="ViewBag.RequestedByUserId"></select>
-                <span asp-validation-for="RequestedByUserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestJustification" class="control-label"></label>
-                <input asp-for="RequestJustification" class="form-control" />
-                <span asp-validation-for="RequestJustification" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalStatus" class="control-label"></label>
-                <input asp-for="ApprovalStatus" class="form-control" />
-                <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByEmployeeId" class="control-label"></label>
-                <input asp-for="ApprovedByEmployeeId" class="form-control" />
-                <span asp-validation-for="ApprovedByEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByEmployeeName" class="control-label"></label>
-                <input asp-for="ApprovedByEmployeeName" class="form-control" />
-                <span asp-validation-for="ApprovedByEmployeeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByUserId" class="control-label"></label>
-                <select asp-for="ApprovedByUserId" class="form-control" asp-items="ViewBag.ApprovedByUserId"></select>
-                <span asp-validation-for="ApprovedByUserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalComment" class="control-label"></label>
-                <input asp-for="ApprovalComment" class="form-control" />
-                <span asp-validation-for="ApprovalComment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>

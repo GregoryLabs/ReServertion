@@ -12,7 +12,7 @@ namespace ServerReservation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Request");
         }
 
         public IActionResult Privacy()

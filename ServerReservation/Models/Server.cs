@@ -22,8 +22,10 @@ namespace ServerReservation.Models
         public string Hostname { get; set; }
         [DisplayName("Hard Drive")] public double? HD { get; set; }
         [DisplayName("Hard Drive Size")] public FileSize? HDSize { get; set; }
+        public string HDString { get { return HD.ToString() + " " + HDSize.Value.ToString(); } }
         [DisplayName("RAM")] public double? RAM { get; set; }
         [DisplayName("RAM Size")] public FileSize? RAMSize { get; set; }
+        public string RAMString { get { return RAM.ToString() + " " + RAMSize.Value.ToString(); } }
         [DisplayName("CPU")] public string CPU { get; set; }
 
         public string Details
@@ -47,10 +49,10 @@ namespace ServerReservation.Models
 
     public enum FileSize
     {
-        [Display(Name = "Kilobyte")] KB,
-        [Display(Name = "Megabyte")] MB,
-        [Display(Name = "Gigabyte")] GB,
-        [Display(Name = "Terabyte")] TB
+        KB,
+        MB,
+        GB,
+        TB
     }
     public enum ServerType
     {

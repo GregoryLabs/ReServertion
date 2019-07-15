@@ -1,33 +1,127 @@
-﻿@model ServerReservation.Models.Request
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@using ServerReservation.Areas.Identity.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model ServerReservation.Models.Request
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <h1>Create</h1>
-
 <h4>Request</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+
+
+<form asp-action="Create">
+    <div class="row">
+        <!-- #region Left Column -->
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Timestamp" class="control-label"></label>
-                <input asp-for="Timestamp" class="form-control" />
-                <span asp-validation-for="Timestamp" class="text-danger"></span>
+            <!-- #region Account information -->
+            <div class="card bg-light mb-3">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div class="card-header">
+                        <div class="row">
+                            <h6 class="float-left col">
+                                The following account information will be recorded when you submit this form:
+                            </h6>
+                            <div class="float-right">
+                                Not you?<br /><a asp-area="Identity" asp-page="/Account/Logout">Logout</a>
+                                <!-- Attention: -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            @if (!string.IsNullOrEmpty(@user.FullName))
+                            {
+                                <dt class="col-5">
+                                    <strong>Name:</strong>
+                                </dt>
+                                <dd class="col-7">
+                                    <div class=""> @user.FullName</div>
+                                </dd>
+                            }
+                            @if (!string.IsNullOrEmpty(@user.EmployeeId))
+                            {
+                                <dt class="col-5">
+                                    <strong>Employee Id:</strong>
+                                </dt>
+                                <dd class="col-7">
+                                    <div class=""> @user.EmployeeId</div>
+                                </dd>
+                            }
+                            @if (!string.IsNullOrEmpty(@user.Email))
+                            {
+                                <dt class="col-5">
+                                    <strong>Email:</strong>
+                                </dt>
+                                <dd class="col-7">
+                                    <div class=""> @user.Email</div>
+                                </dd>
+                            }
+                            @if (!string.IsNullOrEmpty(@user.PhoneNumber))
+                            {
+                                <dt class="col-5">
+                                    <strong>Phone Number:</strong>
+                                </dt>
+                                <dd class="col-7">
+                                    <div class="">@user.PhoneNumber</div>
+                                </dd>
+                            }
+                        </dl>
+                        <div class="form-group">
+                            <label asp-for="RequestedByUserId" class="control-label sr-only"></label>
+                            <input asp-for="RequestedByUserId" class="form-control" value="" type="hidden" />
+                            <span asp-validation-for="RequestedByUserId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="RequestedByEmployeeName" class="control-label"></label>
+                            <input asp-for="RequestedByEmployeeName" class="form-control" required />
+                            <span asp-validation-for="RequestedByEmployeeName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RequestedByEmployeeId" class="control-label"></label>
+                            <input asp-for="RequestedByEmployeeId" class="form-control" required />
+                            <span asp-validation-for="RequestedByEmployeeId" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <!-- #endregion Account information-->
+            <!-- #region Request Details -->
+            <div class="form-row">
+                <div class="form-group col">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" type="text" value="" id="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" type="text" value="" id="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <label asp-for="RequestJustification" class="control-label"></label>
+                <textarea asp-for="RequestJustification" class="form-control"></textarea>
+                <span asp-validation-for="RequestJustification" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
+            <!-- #endregion Request Details-->
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
@@ -35,57 +129,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="ServerId" class="control-label"></label>
-                <select asp-for="ServerId" class ="form-control" asp-items="ViewBag.ServerId"></select>
+                <select asp-for="ServerId" class="form-control" asp-items="ViewBag.ServerId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="RequestedByEmployeeId" class="control-label"></label>
-                <input asp-for="RequestedByEmployeeId" class="form-control" />
-                <span asp-validation-for="RequestedByEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestedByEmployeeName" class="control-label"></label>
-                <input asp-for="RequestedByEmployeeName" class="form-control" />
-                <span asp-validation-for="RequestedByEmployeeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestedByUserId" class="control-label"></label>
-                <select asp-for="RequestedByUserId" class ="form-control" asp-items="ViewBag.RequestedByUserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestJustification" class="control-label"></label>
-                <input asp-for="RequestJustification" class="form-control" />
-                <span asp-validation-for="RequestJustification" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalStatus" class="control-label"></label>
-                <input asp-for="ApprovalStatus" class="form-control" />
-                <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByEmployeeId" class="control-label"></label>
-                <input asp-for="ApprovedByEmployeeId" class="form-control" />
-                <span asp-validation-for="ApprovedByEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByEmployeeName" class="control-label"></label>
-                <input asp-for="ApprovedByEmployeeName" class="form-control" />
-                <span asp-validation-for="ApprovedByEmployeeName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedByUserId" class="control-label"></label>
-                <select asp-for="ApprovedByUserId" class ="form-control" asp-items="ViewBag.ApprovedByUserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalComment" class="control-label"></label>
-                <input asp-for="ApprovalComment" class="form-control" />
-                <span asp-validation-for="ApprovalComment" class="text-danger"></span>
-            </div>
+
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
 
 <div>
     <a asp-action="Index">Back to List</a>

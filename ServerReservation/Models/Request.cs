@@ -16,7 +16,7 @@ namespace ServerReservation.Models
         private DateTime? timestamp;
         public DateTime Timestamp
         {
-            get { return timestamp ?? DateTime.UtcNow; }
+            get { return timestamp ?? DateTime.Now; }
             set { timestamp = value; }
         }
 

@@ -60,7 +60,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Timestamp,Cost,Hostname,HD,HDSize,RAM,RAMSize,CPU,ServerType,Location,Note")] Server server)
+        public async Task<IActionResult> Create( Server server)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateRequest([Bind("Id,Timestamp,Cost,Hostname,HD,HDSize,RAM,RAMSize,CPU,ServerType,Location,Note")] Server server)
+        public async Task<IActionResult> CreateRequest(Server server)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Timestamp,Cost,Hostname,HD,HDSize,RAM,RAMSize,CPU,ServerType,Location,Note")] Server server)
+        public async Task<IActionResult> Edit(int id, Server server)
         {
             if (id != server.Id)
             {
@@ -167,7 +167,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditRequest(int id, [Bind("Id,Timestamp,Cost,Hostname,HD,HDSize,RAM,RAMSize,CPU,ServerType,Location,Note")] Server server)
+        public async Task<IActionResult> EditRequest(int id, Server server)
         {
             if (id != server.Id)
             {

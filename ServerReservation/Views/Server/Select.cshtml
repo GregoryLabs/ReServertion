@@ -5,13 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    <div class="col-4 pl-0">
-        <h2>Server Selection</h2>
-        <h6>Select an existing server or create new.</h6>
-    </div>
-    <a asp-action="CreateRequest" class="pull-right">Create New</a>
-</p>
+
+<h2>Request - Server Selection </h2>
+<h5>Select an existing server or create new.</h5>
+<hr />
+<a asp-action="CreateRequest" class="btn btn-primary pull-right">Create New</a>
+
 <table id="myTable" class="table table-striped table-bordered table-hover nowrap">
     <thead>
         <tr>

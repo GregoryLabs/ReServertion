@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <p>
-        <div class="col-4  pl-0"><h1>Requests</h1></div>
-        <a asp-controller="Server" asp-action="Select" class="pull-right">Create New</a>
-    </p>
+
+<div class="col-4  pl-0"><h1>Requests</h1></div><hr />
+<a asp-controller="Server" asp-action="Select" class="btn btn-primary pull-right">Create New</a>
+
 
 <table id="myTable" class="table table-striped table-bordered table-hover nowrap">
     <thead>
@@ -24,9 +24,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsNewServer)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Server.Cost)
@@ -53,7 +50,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="wrap">
                     @Html.DisplayFor(modelItem => item.Timestamp)
                 </td>
                 <td>
@@ -66,17 +63,30 @@
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsNewServer)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Server.Cost)
                 </td>
                 <td class="wrap">
-                    @Html.DisplayFor(modelItem => item.Server.Hostname)
-                    @Html.DisplayFor(modelItem => item.Server.CPU)
-                    @Html.DisplayFor(modelItem => item.Server.HDString)
-                    @Html.DisplayFor(modelItem => item.Server.RAMString)
-                    @Html.DisplayFor(modelItem => item.Server.ServerType)
+                    @if (!string.IsNullOrEmpty(item.Server.Hostname))
+                    {
+                        <div class="text-nowrap">Hostname: @Html.DisplayFor(modelItem => item.Server.Hostname)</div>
+                    }
+                    @if (!string.IsNullOrEmpty(item.Server.CPU))
+                    {
+                        <div class="text-nowrap">CPU: @Html.DisplayFor(modelItem => item.Server.CPU)</div>
+                    }
+                    @if (item.Server.HD != null)
+                    {
+                        <div class="text-nowrap">HD: @Html.DisplayFor(modelItem => item.Server.HDString)</div>
+                    }
+                    @if (item.Server.RAM != null)
+                    {
+                        <div class="text-nowrap">RAM: @Html.DisplayFor(modelItem => item.Server.RAMString)</div>
+                    }
+                    @if (!string.IsNullOrEmpty(item.Server.Hostname))
+                    {
+                        <div class="text-nowrap">@Html.DisplayFor(modelItem => item.Server.ServerType)</div>
+                    }
+
                 </td>
                 <td class="wrap">
                     @Html.DisplayFor(modelItem => item.RequestedByEmployeeName)
@@ -102,7 +112,6 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>

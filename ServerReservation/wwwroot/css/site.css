@@ -89,3 +89,7 @@ body {
 .not-allowed {
     cursor: not-allowed;
 }
+
+strong {
+    font-weight: 500 !important;
+}

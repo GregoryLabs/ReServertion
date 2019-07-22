@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ServerReservation.Data;
 using ServerReservation.Models;
 
@@ -229,6 +231,17 @@ namespace ServerReservation.Controllers
         private bool ServerExists(int id)
         {
             return _context.Servers.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Download(string IPv4Address)
+        {
+            if (string.IsNullOrEmpty(IPv4Address))
+            {
+                return NotFound();
+            }
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Default.rdp");
+            return new FileContentResult(Encoding.UTF8.GetBytes("full address:s:" + IPv4Address), "text/rdp");
         }
     }
 }

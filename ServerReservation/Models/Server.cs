@@ -17,7 +17,7 @@ namespace ServerReservation.Models
             set { timestamp = value; }
         }
 
-        [DisplayName("Cost")] [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)] public double Cost { get; set; }
+        [DisplayName("Cost")] [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)] public double? Cost { get; set; }
 
 
         [DisplayName("Host Name")] public string Hostname { get; set; }

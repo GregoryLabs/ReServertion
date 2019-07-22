@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20190722061830_null.cs" />
+    <Compile Remove="Data\Migrations\20190722061830_null.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Request\Create - Copy.cshtml" />
     <Content Remove="Views\Request\Edit - Copy.cshtml" />
     <Content Remove="Views\Server\Create - Copy.cshtml" />

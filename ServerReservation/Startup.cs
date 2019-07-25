@@ -40,6 +40,7 @@ namespace ServerReservation
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -47,7 +48,7 @@ namespace ServerReservation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +74,39 @@ namespace ServerReservation
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateUserRoles(serviceProvider).Wait();
+        }
+
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            IdentityResult roleResult;
+            //Adding Admin Role
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                //create the roles and seed them to the database
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            roleResult = await RoleManager.RoleExistsAsync("Manager") ? null : await RoleManager.CreateAsync(new IdentityRole("Manager"));
+            roleResult = await RoleManager.RoleExistsAsync("Employee") ? null : await RoleManager.CreateAsync(new IdentityRole("Employee"));
+            roleResult = await RoleManager.RoleExistsAsync("Customer") ? null : await RoleManager.CreateAsync(new IdentityRole("Customer"));
+
+
+            //Assign Admin role to the main User here we have given our newly registered 
+            //login id for Admin management
+#warning Change default admin email
+            ApplicationUser user = await UserManager.FindByEmailAsync("Josh@GregoryLabs.com"); //TODO: Change default admin email
+            if (user != null)
+            {
+                await UserManager.AddToRoleAsync(user, "Admin");
+                await UserManager.AddToRoleAsync(user, "Manager");
+                await UserManager.AddToRoleAsync(user, "Employee");
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using ServerReservation.Models;
 
 namespace ServerReservation.Controllers
 {
+    [Authorize]
     public class ServerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +24,7 @@ namespace ServerReservation.Controllers
         }
 
         // GET: Server
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Servers.ToListAsync());

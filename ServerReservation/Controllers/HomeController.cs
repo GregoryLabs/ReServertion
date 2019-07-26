@@ -15,7 +15,7 @@ namespace ServerReservation.Controllers
             return RedirectToAction("Index", "Request");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Legal()
         {
             return View();
         }

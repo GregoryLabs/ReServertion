@@ -1,8 +1,14 @@
-﻿@model ServerReservation.Models.Server
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@using ServerReservation.Areas.Identity.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model ServerReservation.Models.Server
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <h2>Server - Create</h2>
@@ -78,93 +84,96 @@
 
                 </div>
             </div>
-            <div class="card bg-light mb-3">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label asp-for="MACAddress" class="control-label"></label>
-                        <input asp-for="MACAddress" class="form-control" />
-                        <span asp-validation-for="MACAddress" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="IPv4Address" class="control-label"></label>
-                        <input asp-for="IPv4Address" class="form-control" />
-                        <span asp-validation-for="IPv4Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="IPv6Address" class="control-label"></label>
-                        <input asp-for="IPv6Address" class="form-control" />
-                        <span asp-validation-for="IPv6Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="SubnetMask" class="control-label"></label>
-                        <input asp-for="SubnetMask" class="form-control" />
-                        <span asp-validation-for="SubnetMask" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DefaultGateway" class="control-label"></label>
-                        <input asp-for="DefaultGateway" class="form-control" />
-                        <span asp-validation-for="DefaultGateway" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DHCPServer" class="control-label"></label>
-                        <input asp-for="DHCPServer" class="form-control" />
-                        <span asp-validation-for="DHCPServer" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DNSServer" class="control-label"></label>
-                        <input asp-for="DNSServer" class="form-control" />
-                        <span asp-validation-for="DNSServer" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light mb-3">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label asp-for="MACAddress2" class="control-label"></label>
-                        <input asp-for="MACAddress2" class="form-control" />
-                        <span asp-validation-for="MACAddress2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="IPv4Address2" class="control-label"></label>
-                        <input asp-for="IPv4Address2" class="form-control" />
-                        <span asp-validation-for="IPv4Address2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="IPv6Address2" class="control-label"></label>
-                        <input asp-for="IPv6Address2" class="form-control" />
-                        <span asp-validation-for="IPv6Address2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="SubnetMask2" class="control-label"></label>
-                        <input asp-for="SubnetMask2" class="form-control" />
-                        <span asp-validation-for="SubnetMask2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DefaultGateway2" class="control-label"></label>
-                        <input asp-for="DefaultGateway2" class="form-control" />
-                        <span asp-validation-for="DefaultGateway2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DHCPServer2" class="control-label"></label>
-                        <input asp-for="DHCPServer2" class="form-control" />
-                        <span asp-validation-for="DHCPServer2" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DNSServer2" class="control-label"></label>
-                        <input asp-for="DNSServer2" class="form-control" />
-                        <span asp-validation-for="DNSServer2" class="text-danger"></span>
+            @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+            {
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="MACAddress" class="control-label"></label>
+                            <input asp-for="MACAddress" class="form-control" />
+                            <span asp-validation-for="MACAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IPv4Address" class="control-label"></label>
+                            <input asp-for="IPv4Address" class="form-control" />
+                            <span asp-validation-for="IPv4Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IPv6Address" class="control-label"></label>
+                            <input asp-for="IPv6Address" class="form-control" />
+                            <span asp-validation-for="IPv6Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SubnetMask" class="control-label"></label>
+                            <input asp-for="SubnetMask" class="form-control" />
+                            <span asp-validation-for="SubnetMask" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DefaultGateway" class="control-label"></label>
+                            <input asp-for="DefaultGateway" class="form-control" />
+                            <span asp-validation-for="DefaultGateway" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DHCPServer" class="control-label"></label>
+                            <input asp-for="DHCPServer" class="form-control" />
+                            <span asp-validation-for="DHCPServer" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DNSServer" class="control-label"></label>
+                            <input asp-for="DNSServer" class="form-control" />
+                            <span asp-validation-for="DNSServer" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="MACAddress2" class="control-label"></label>
+                            <input asp-for="MACAddress2" class="form-control" />
+                            <span asp-validation-for="MACAddress2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IPv4Address2" class="control-label"></label>
+                            <input asp-for="IPv4Address2" class="form-control" />
+                            <span asp-validation-for="IPv4Address2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IPv6Address2" class="control-label"></label>
+                            <input asp-for="IPv6Address2" class="form-control" />
+                            <span asp-validation-for="IPv6Address2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SubnetMask2" class="control-label"></label>
+                            <input asp-for="SubnetMask2" class="form-control" />
+                            <span asp-validation-for="SubnetMask2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DefaultGateway2" class="control-label"></label>
+                            <input asp-for="DefaultGateway2" class="form-control" />
+                            <span asp-validation-for="DefaultGateway2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DHCPServer2" class="control-label"></label>
+                            <input asp-for="DHCPServer2" class="form-control" />
+                            <span asp-validation-for="DHCPServer2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DNSServer2" class="control-label"></label>
+                            <input asp-for="DNSServer2" class="form-control" />
+                            <span asp-validation-for="DNSServer2" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            }
             </div>
-        </div>
-        <div class="form-group">
-            <a asp-action="Index">Back to List</a>
-            <input type="submit" value="Save" class="btn btn-primary pull-right" />
-        </div>
-    </form>
-</div>
+            <div class="form-group">
+                <a asp-action="Index">Back to List</a>
+                <input type="submit" value="Save" class="btn btn-primary pull-right" />
+            </div>
+        </form>
+    </div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

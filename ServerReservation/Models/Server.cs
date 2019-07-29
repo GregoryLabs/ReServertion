@@ -17,8 +17,10 @@ namespace ServerReservation.Models
             set { timestamp = value; }
         }
 
-        [DisplayName("Cost")] [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)] public double? Cost { get; set; }
+        [DisplayName("Cost")] [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)] public double? Cost { get; set; }
 
+        [DisplayName("Group")] public string Group { get; set; }
+        [DisplayName("Alias")] public string Alias { get; set; }
 
         [DisplayName("Host Name")] public string Hostname { get; set; }
         [DisplayName("DNS Domain")] public string DNSDomain { get; set; }
@@ -53,6 +55,7 @@ namespace ServerReservation.Models
 
 
         [DisplayName("CPU")] public string CPU { get; set; }
+        [DisplayName("Cores")] public int? Cores { get; set; }
         [DisplayName("Hard Drive")] public double? HD { get; set; }
         [DisplayName("Hard Drive Size")] public FileSize? HDSize { get; set; }
         public string HDString { get { return HD.ToString() + " " + HDSize.Value.ToString(); } }
@@ -75,8 +78,12 @@ namespace ServerReservation.Models
         }
 
         [DisplayName("Type")] public ServerType? ServerType { get; set; }
-        public string Location { get; set; }
-        public string Note { get; set; }
+        [DisplayName("Location")] public string Location { get; set; }
+        [DisplayName("Note")] public string Note { get; set; }
+        [DisplayName("Justification")] public string Justification { get; set; }
+        [DisplayName("ProjectId")] public string ProjectId { get; set; }
+
+
     }
 
     public enum FileSize

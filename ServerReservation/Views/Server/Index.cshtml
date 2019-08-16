@@ -1,83 +1,132 @@
-﻿@model IEnumerable<ServerReservation.Models.Server>
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@using ServerReservation.Areas.Identity.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+@model IEnumerable<ServerReservation.Models.Server>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-4 pl-0"><h1>Servers</h1></div><hr />
-<a asp-action="Create" class="btn btn-primary pull-right">Create New</a>
+<div class="col-4 pl-0"><h1>Servers</h1></div>
+<hr />
 
-<table id="myTable" class="table table-striped table-bordered table-hover nowrap">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Timestamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hostname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IPv4Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HD)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RAM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ServerType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-action="Create" class="btn btn-primary rr">Create New</a>
+    <table id="myTable" class="table table-striped table-bordered table-hover nowrap">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Timestamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hostname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IPv4Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CPU)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HDString)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RAMString)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ServerType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-                <td>
-                    <a asp-action="Download" asp-route-IPv4Address="@item.IPv4Address">Download</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Timestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hostname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IPv4Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CPU)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RAM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServerType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Timestamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hostname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IPv4Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPU)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HDString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RAMString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServerType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        <a asp-action="Download" asp-route-IPv4Address="@item.IPv4Address">Download</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <table id="myTable" class="table table-striped table-bordered table-hover nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hostname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IPv4Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hostname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IPv4Address)
+                    </td>
+                    <td>
+                        <a asp-action="Download" asp-route-IPv4Address="@item.IPv4Address">Download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

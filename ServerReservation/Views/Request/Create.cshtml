@@ -102,7 +102,7 @@
         <!-- #region Request Details -->
         <div class="card bg-light mb-3">
             <div class="card-body">
-                <a asp-controller="Server" asp-action="EditRequest" asp-route-id="@ViewBag.SelectedServerId" class="pull-right">Edit</a>
+                <a asp-controller="Server" asp-action="EditRequest" asp-route-id="@ViewBag.SelectedServerId" class="rr">Edit</a>
                 <div class="form-group">
                     <label asp-for="ServerId" class="control-label"></label>
                     <select asp-for="ServerId" class="form-control not-allowed" asp-items="ViewBag.ServerId" readonly></select>
@@ -134,7 +134,7 @@
 
         <div class="form-group">
             <a asp-controller="Server" asp-action="Select">Back to List</a>
-            <input type="submit" value="Create" class="btn btn-primary pull-right" />
+            <input type="submit" value="Create" class="btn btn-primary rr" />
         </div>
 
     </form>

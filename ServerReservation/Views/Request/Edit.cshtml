@@ -30,7 +30,7 @@
     <div class="card-deck">
         <div class="card bg-light mb-3">
             <div class="card-body">
-                <div class="form-group form-check pull-right">
+                <div class="form-group form-check rr">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="IsNewServer" /> @Html.DisplayNameFor(model => model.IsNewServer)
                     </label>
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <label asp-for="ServerId" class="control-label"></label>
                     <select asp-for="ServerId" asp-items="ViewBag.ServerId"
-                            class="selectpicker form-control SelectListClassWhite"
+                            class="selectpicker form-control SelectListWhite"
                             data-live-search="true" data-size="9" data-max-options="1"
                             liveSearchPlaceholder="Search..." selectonTab="true"></select>
                     <span asp-validation-for="ServerId" class="text-danger"></span>
@@ -89,7 +89,7 @@
                     <div class="form-group">
                         <label asp-for="ApprovalStatus" class="control-label"></label>
                         <select asp-for="ApprovalStatus" asp-items="Html.GetEnumSelectList<ApprovalStatus>()"
-                                class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                                class="selectpicker form-control SelectListWhite" selectonTab="true"></select>
                         <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -111,7 +111,7 @@
     </div>
         <div class="form-group">
             <a asp-action="Index">Back to List</a>
-            <input type="submit" value="Save" class="btn btn-primary pull-right" />
+            <input type="submit" value="Save" class="btn btn-primary rr" />
         </div>
     </form>
 </div>

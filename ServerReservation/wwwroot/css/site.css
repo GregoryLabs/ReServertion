@@ -66,26 +66,6 @@ body {
     white-space: nowrap !important;
 }
 
-.pull-right {
-    float: right !important;
-    text-align: right !important;
-}
-
-.SelectListClass button,
-.SelectListClass .button,
-.SelectListClass .btn,
-.bootstrap-select button,
-.bootstrap-select .button,
-.bootstrap-select .btn {
-    border: 1px solid #d2d6de;
-}
-
-.SelectListClassWhite button,
-.SelectListClassWhite .button,
-.SelectListClassWhite .btn {
-    background-color: white;
-}
-
 .not-allowed {
     cursor: not-allowed;
 }
@@ -93,3 +73,147 @@ body {
 strong {
     font-weight: 500 !important;
 }
+
+.reportrange {
+    background: #fff;
+    cursor: pointer;
+    padding: 3px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.cancelBtn {
+    float: left;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: auto;
+}
+
+.p-small button,
+.p-small .button,
+.p-small .btn {
+    padding: 3px 8px !important;
+}
+
+.SelectList button,
+.SelectList .button,
+.SelectList .btn,
+.bootstrap-select button,
+.bootstrap-select .button,
+.bootstrap-select .btn {
+    border: 1px solid #d2d6de;
+    
+    /*width: auto;*/
+}
+
+.SelectListWhite button,
+.SelectListWhite .button,
+.SelectListWhite .btn {
+    background-color: white;
+}
+
+
+.r {
+    float: right;
+}
+
+.rr {
+    float: right !important;
+}
+
+.l {
+    float: left;
+}
+
+.ll {
+    float: left !important;
+}
+
+.inline {
+    display: inline;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 4px;
+    white-space: nowrap;
+}
+
+.dataTables_length label{
+    margin-bottom: 0px;
+}
+
+button.dt-button, div.dt-button, a.dt-button {
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0;
+    font-weight: 400;
+    padding: 3px 8px !important;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+div.dt-button-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: auto !important;
+}
+
+div.dt-button-collection {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+    div.dt-button-collection button.dt-button, div.dt-button-collection div.dt-button, div.dt-button-collection a.dt-button {
+        display: block;
+        width: 100%;
+        padding: 0.25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+    }
+        div.dt-button-collection button.dt-button.active, div.dt-button-collection button.dt-button:active,
+        div.dt-button-collection div.dt-button.active, div.dt-button-collection div.dt-button:active,
+        div.dt-button-collection a.dt-button.active, div.dt-button-collection a.dt-button:active  
+        div.dt-button-collection button.dt-button.focus, div.dt-button-collection button.dt-button:focus,
+        div.dt-button-collection div.dt-button.focus, div.dt-button-collection div.dt-button:focus,
+        div.dt-button-collection a.dt-button.focus, div.dt-button-collection a.dt-button:focus {
+            color: #fff;
+            text-decoration: none;
+            background-color: #007bff;
+        }
+        div.dt-button-collection button.dt-button.hover, div.dt-button-collection button.dt-button:hover,
+        div.dt-button-collection div.dt-button.hover, div.dt-button-collection div.dt-button:hover,
+        div.dt-button-collection a.dt-button.hover, div.dt-button-collection a.dt-button:hover {
+            color: #16181b;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }

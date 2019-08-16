@@ -57,7 +57,7 @@
         this.ranges = {};
 
         this.opens = 'right';
-        if (this.element.hasClass('pull-right'))
+        if (this.element.hasClass('rr'))
             this.opens = 'left';
 
         this.drops = 'down';

@@ -20,8 +20,8 @@ namespace ServerReservation.Models
             set { timestamp = value; }
         }
 
-        [DisplayName("Start Date")] [DataType(DataType.Date)] public DateTime? StartDate { get; set; }
-        [DisplayName("End Date")] [DataType(DataType.Date)] public DateTime? EndDate { get; set; }
+        [DisplayName("Start Date")] [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")] [DataType(DataType.Date)] public DateTime? StartDate { get; set; }
+        [DisplayName("End Date")] [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")] [DataType(DataType.Date)] public DateTime? EndDate { get; set; }
         [DisplayName("New Server")] public bool IsNewServer { get; set; }
 
 

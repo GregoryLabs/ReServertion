@@ -22,7 +22,6 @@ namespace ServerReservation.Controllers
         }
 
         // GET: Request
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Requests.Include(r => r.ApprovedByUser).Include(r => r.RequestedByUser).Include(r => r.Server);
@@ -80,6 +79,7 @@ namespace ServerReservation.Controllers
         {
             if (ModelState.IsValid)
             {
+                request.ApprovalStatus = ApprovalStatus.Pending;
                 _context.Add(request);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

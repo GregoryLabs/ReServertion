@@ -22,6 +22,9 @@
     <link href="~/lib/datatables/ColReorder-1.5.0/css/colReorder.bootstrap4.css" rel="stylesheet" />
     <link href="~/lib/datatables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.css" rel="stylesheet" />
     <link href="~/lib/datatables/Select-1.3.0/css/select.bootstrap4.css" rel="stylesheet" />
+    <link href="~/lib/datatables/Buttons-1.5.6/css/buttons.bootstrap4.css" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -40,6 +43,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Index">Request</a>
                         </li>
@@ -55,17 +59,18 @@
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
+            <br />
+            <br />
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - ServerReservation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2019 - Josh Gregory - <a asp-area="" asp-controller="Home" asp-action="Legal">Legal</a>
         </div>
     </footer>
 
     <!-- #region REQUIRED JS SCRIPTS -->
-
     <!-- jQuery first, then Bootstrap JS -->
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -85,6 +90,11 @@
     <script src="~/lib/datatables/FixedColumns-3.2.5/js/dataTables.fixedColumns.js"></script>
     <script src="~/lib/datatables/Select-1.3.0/js/select.bootstrap4.js"></script>
     <script src="~/lib/datatables/Select-1.3.0/js/dataTables.select.js"></script>
+    <script src="~/lib/datatables/Buttons-1.5.6/js/dataTables.buttons.js"></script>
+    <script src="~/lib/datatables/Buttons-1.5.6/js/buttons.print.js"></script>
+    <script src="~/lib/datatables/Buttons-1.5.6/js/buttons.html5.js"></script>
+    <script src="~/lib/datatables/Buttons-1.5.6/js/buttons.colVis.js"></script>
+    <script src="~/lib/datatables/Buttons-1.5.6/js/buttons.bootstrap4.js"></script>
     <!-- Custom Scripts -->
     <script src="~/js/site.js"></script>
     <script src="~/js/dateRange.js"></script>

@@ -15,6 +15,7 @@
                 <div class="card-body">
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
                     <!-- Cost -->
                     <div class="form-group">
                         <label asp-for="Cost" class="control-label"></label>
@@ -40,7 +41,7 @@
                         <div class="input-group-append">
                             <label asp-for="HDSize" class="control-label sr-only"></label>
                             <select asp-for="HDSize" asp-items="Html.GetEnumSelectList<FileSize>()"
-                                    class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                                    class="selectpicker form-control SelectListWhite" selectonTab="true"></select>
                         </div>
                     </div>
                     <span asp-validation-for="HD" class="text-danger"></span>
@@ -54,7 +55,7 @@
                             <label asp-for="RAMSize" class="control-label sr-only"></label>
 
                             <select asp-for="RAMSize" asp-items="Html.GetEnumSelectList<FileSize>()"
-                                    class="selectpicker form-control SelectListClassWhite" selectonTab="true"></select>
+                                    class="selectpicker form-control SelectListWhite" selectonTab="true"></select>
                         </div>
 
                     </div>
@@ -65,7 +66,7 @@
                     <div class="form-group">
                         <label asp-for="ServerType" class="control-label"></label>
                         <select asp-for="ServerType" asp-items="Html.GetEnumSelectList<ServerType>()"
-                                class="selectpicker form-control SelectListClassWhite" title="Select Type..." selectonTab="true"></select>
+                                class="selectpicker form-control SelectListWhite" title="Select Type..." selectonTab="true"></select>
                         <span asp-validation-for="ServerType" class="text-danger"></span>
                     </div>
                     <!-- Location -->
@@ -158,7 +159,7 @@
 
         <div class="form-group">
             <a asp-action="Select">Back to List</a>
-            <input type="submit" value="Continue" class="btn btn-primary pull-right" />
+            <input type="submit" value="Continue" class="btn btn-primary rr" />
         </div>
     </form>
 </div>

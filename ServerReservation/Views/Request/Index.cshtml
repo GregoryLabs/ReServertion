@@ -22,7 +22,7 @@
 </div>
 
 
-<table id="myTable" class="table table-striped table-bordered table-hover nowrap">
+<table id="requestTable" class="table table-striped table-bordered table-hover nowrap">
     <thead>
         <tr>
             <th>
@@ -30,7 +30,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ApprovalStatus)
-                
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
@@ -131,3 +131,8 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script src="~/js/request.js"></script>
+}
+

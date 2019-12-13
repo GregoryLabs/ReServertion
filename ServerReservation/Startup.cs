@@ -75,7 +75,7 @@ namespace ServerReservation
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            CreateUserRoles(serviceProvider).Wait();
+            //CreateUserRoles(serviceProvider).Wait();
         }
 
         private async Task CreateUserRoles(IServiceProvider serviceProvider)

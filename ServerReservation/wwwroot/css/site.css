@@ -217,3 +217,23 @@ div.dt-button-collection {
             text-decoration: none;
             background-color: #f8f9fa;
         }
+
+
+button.a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+button.a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+
+
+
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  
+  cursor: pointer;
+}

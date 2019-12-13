@@ -1,11 +1,13 @@
-﻿$('#SSH').on('click', () => {
+﻿$(".SSH").click(function () {
+    var IPv4Address = $(this).val();
+    alert("Run SSH: " + IPv4Address);
 
- 
-    var IPv4Address = document.getElementById('SSH').value;
-    alert("Run SSH ");
-    $.post("SSH", { host: IPv4Address }, function () {
-
-        alert("SSH ran");
+    $.ajax({
+        url: window.location.origin + "/Server/SSH",
+        type: "post",
+        data: { host: IPv4Address },
+        success: function () {
+            alert("SSH ran");
+        }
     });
-
 });

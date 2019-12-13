@@ -86,8 +86,8 @@
                         @Html.DisplayFor(modelItem => item.Location)
                     </td>
                     <td>
-                        <button id="SSH" type="button" class="a" value="@item.IPv4Address">SSH</button> |
-                        <a asp-action="Download" asp-route-IPv4Address="@item.IPv4Address">Download</a> |
+                        <button id="SSH" type="button" class="a SSH" value="@item.IPv4Address">SSH</button> |
+                        <a asp-action="Download" asp-route-IPv4Address="@item.IPv4Address" >Download</a> |
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </td>

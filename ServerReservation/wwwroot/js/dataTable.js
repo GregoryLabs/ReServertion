@@ -14,7 +14,7 @@ function DataTable() {
             "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
             buttons: ['colvis'],//, 'copy', 'csv', 'pdf'
             colReorder: true,
-            select: true,
+            select: false,
             fixedHeader: true,
             //      L = how many entries to show
             //      I = Showing 1 to 8 of 8 entries

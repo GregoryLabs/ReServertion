@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using NUnit.Framework;
+using Renci.SshNet;
 using ServerReservation.Data;
 using ServerReservation.Models;
 
@@ -17,6 +20,10 @@ namespace ServerReservation.Controllers
     public class ServerController : Controller
     {
         private readonly ApplicationDbContext _context;
+
+        private SshClient client;
+        private static string username = "username";// TODO: Enter your sftp username here
+        private static string password = "password";// TODO: Enter your sftp password here
 
         public ServerController(ApplicationDbContext context)
         {
@@ -65,7 +72,7 @@ namespace ServerReservation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Server server)
+        public async Task<IActionResult> Create(Server server)
         {
             if (ModelState.IsValid)
             {
@@ -246,5 +253,51 @@ namespace ServerReservation.Controllers
             Response.Headers.Add("Content-Disposition", "attachment; filename=Default.rdp");
             return new FileContentResult(Encoding.UTF8.GetBytes("full address:s:" + IPv4Address), "text/rdp");
         }
+
+
+        public void SSH(string host)
+        {
+            string fileName = "install.bat";//TODO: "install.bat" is the name of the file which should be located in your project root directory.
+
+            UploadFile(host, fileName);
+            ExecuteCommandAsync(host);
+        }
+
+        private void UploadFile(string host, string fileName)
+        {
+            var connectionInfo = new ConnectionInfo(host, "sftp", new PasswordAuthenticationMethod(username, password));
+            // Upload File
+            using (var sftp = new SftpClient(connectionInfo))
+            {
+                sftp.Connect();
+                sftp.ChangeDirectory("/MyFolder");//TODO: Change Directory
+                using (var uplfileStream = System.IO.File.OpenRead(fileName))
+                {
+                    sftp.UploadFile(uplfileStream, fileName, true);
+                }
+                sftp.Disconnect();
+            }
+        }
+
+        private void ExecuteCommandAsync(string host)
+        {
+
+            using (var client = new SshClient(host, username, password))
+            {
+                #region SshCommand RunCommand Result
+                client.Connect();
+
+                var command = client.RunCommand("install.bat");//TODO: Customize command
+                var result = command.Result;
+
+                client.Disconnect();
+                #endregion
+
+
+            }
+        }
+
     }
 }
+
+
